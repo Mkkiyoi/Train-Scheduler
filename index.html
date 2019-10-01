@@ -34,6 +34,53 @@
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
 </head>
 <body>
-    
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="jumbotron">
+                    <h1>Train Scheduler</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Frequency (min)</th>
+                        <th scope="col">Next Arrival</th>
+                        <th scope="col">Minutes Away</th>
+                      </tr>
+                    </thead>
+                    <tbody id="train-schedule"></tbody>
+                  </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <form>
+                    <div class="form-group">
+                      <label for="name">Train Name</label>
+                      <input type="name" class="form-control" id="train-name" aria-describedby="trainName" placeholder="">
+                    </div>
+                    <div class="form-group">
+                      <label for="destination">Destination</label>
+                      <input type="name" class="form-control" id="train-destination" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="train time">First Train Time (HH:mm - military time)</label>
+                        <input type="name" class="form-control" id="train-arrival" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="frequency">Frequency (min)</label>
+                        <input type="name" class="form-control" id="train-frequency" placeholder="">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
