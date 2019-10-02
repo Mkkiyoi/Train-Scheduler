@@ -24,14 +24,17 @@
     <!-- Linking Stylesheets -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
-    <!-- Linking Javascript -->
-    <script src="assets/javascript/game.js"></script>
-
     <!-- Linking Firebase Core -->
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
 
     <!-- Linking Firevase Database -->
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+
+    <!-- Linking moment.js -->
+    <script src="assets/javascript/moment.js"></script>
+
+    <!-- Linking Javascript -->
+    <script src="assets/javascript/app.js"></script>
 </head>
 <body>
     <div class="container">
@@ -77,7 +80,7 @@
                         <label for="frequency">Frequency (min)</label>
                         <input type="name" class="form-control" id="train-frequency" placeholder="">
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" id='submit'>Submit</button>
                   </form>
             </div>
         </div>
