@@ -2,30 +2,28 @@
 
     'use strict';
 
-    // Initialize config for firebase database.
-    let config = {
-        apiKey: "AIzaSyB7AsEBrqZQifTPlf-CnHwbFTGr8oedwEQ",
-        authDomain: "testdb-73df7.firebaseapp.com",
-        databaseURL: "https://testdb-73df7.firebaseio.com",
-        projectId: "testdb-73df7",
-        storageBucket: "testdb-73df7.appspot.com",
-        messagingSenderId: "833925431795",
-        appId: "1:833925431795:web:833563f80eab0b71dfd286"
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyC080ONM_20Rf_UKup9nFM1Eh1gY82h5SI",
+        authDomain: "train-scheduler-67309.firebaseapp.com",
+        databaseURL: "https://train-scheduler-67309.firebaseio.com",
+        projectId: "train-scheduler-67309",
+        storageBucket: "",
+        messagingSenderId: "929968473514",
+        appId: "1:929968473514:web:e4938c39abb791279217d3"
     };
-    
-    // Initialize connection to firebase
-    firebase.initializeApp(config);
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
     
     // Get reference point to firebase databse
     let database = firebase.database();
 
-    database.ref().set({
-        trains: null
-    });
+    // Initialize moment.js
+    moment().format();
 
     // Whenever a value is added or changed in the database, get a snapshot of the database.
     // Reflect database change in the trian schedule  
-    database.ref().on('child_added', function (snapshot) {
+    database.ref().on('child_added', function(snapshot) {
             console.log(snapshot.val());
 
             // Get table body.
@@ -35,24 +33,38 @@
             let tableRow = $('<tr>');
 
             // Create new table cells with new train information.
+            // Name
             let nameCell = $('<td>').text(snapshot.val().name);
+
+            // Desination
             let destinationCell = $('<td>').text(snapshot.val().destination);
-            let frequencyCell = $('<td>').text(snapshot.val().frequency);
-            let arrivalCell = $('<td>').text(snapshot.val().arrivalTime);
+
+            // Frequency of the train
+            let frequency = snapshot.val().frequency;
+            let frequencyCell = $('<td>').text(frequency);
+
+            // Arival Time converted from military time to AM/PM
+            let arrival = moment(snapshot.val().arrivalTime, 'HH:mm').format('LT')
+            let arrivalCell = $('<td>').text(arrival);
             
-            // Need to calculate how many min away this train is
-            // let minAwayCell = $('<td>').text(snapshot.val().minAway);
+            // Minutes away from arrival, calculated from frequency and arrival time.
+            let convertedArrival = moment(snapshot.val().arrivalTime, "HH:mm").subtract(1, "years");
+            let timeDiff = moment().diff(moment(convertedArrival), "minutes");
+            let minAway = frequency - (timeDiff % frequency);
+            let minAwayCell = $('<td>').text(minAway);
 
             // Append table cells to the new table row.
             tableRow.append(nameCell);
             tableRow.append(destinationCell);
             tableRow.append(frequencyCell);
             tableRow.append(arrivalCell);
-            // tableRow.append(minAwayCell);
+            tableRow.append(minAwayCell);
 
             // Append table row to the table body
             trainSchedule.append(tableRow);
+
     }, function (errorObject) {
+        // On error, 
         console.log('Error logged: ' + errorObject.message);
     });
 
@@ -69,6 +81,11 @@
             frequency: trainFrequency,
             arrivalTime: trainArrival
         });
+
+        trainName.val('');
+        trainDestination.val('');
+        trainFrequency.val('');
+        trainArrival.val('');
     }
 
 

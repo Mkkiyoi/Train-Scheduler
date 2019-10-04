@@ -1,0 +1,7 @@
+.jumbotron {
+    /* Box Model */
+    padding: 32px;
+
+    /* Typography */
+    text-align: center;
+}
