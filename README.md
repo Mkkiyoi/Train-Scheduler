@@ -1,7 +1,7 @@
 # Train-Scheduler
 
 ### Live Version of the Site
-* [Trivia Game](mkkiyoi.github.io/Train-Scheduler)
+* [Train Scheduler](mkkiyoi.github.io/Train-Scheduler)
 
 ### How does the site work?
 * 
