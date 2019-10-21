@@ -1,7 +1,7 @@
 # Train-Scheduler
 
 ### Live Version of the Site
-* [Train Scheduler](mkkiyoi.github.io/Train-Scheduler)
+* [Train Scheduler](https://mkkiyoi.github.io/Train-Scheduler)
 
 ### How does the site work?
 * This site is used to display train schedules. 
